@@ -51,7 +51,7 @@ public class Configuration {
 			return true;
 		}
 		catch (IOException ex) {
-			this.plugin.getLogger().log(Level.SEVERE, "[SG] Error saving configuration file: '" + this.fname + "'!");
+			this.plugin.getLogger().log(Level.SEVERE, "[" + this.plugin.getName() + "] Error saving configuration file: '" + this.fname + "'!");
 		}
 		return false;
 	}
