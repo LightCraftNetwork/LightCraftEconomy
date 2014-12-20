@@ -97,7 +97,7 @@ public class Economy extends JavaPlugin{
 			}else if(temp.longValue()<min.longValue()){
 				set = Integer.MIN_VALUE;
 			}else{
-				set = amount + currentint;
+				set = currentint + amount;
 			}
 			setcoins.setInt(1, set);
 			setcoins.setString(2, player.getUniqueId().toString());
@@ -119,7 +119,7 @@ public class Economy extends JavaPlugin{
 			}else if(temp.longValue()<min.longValue()){
 				set = Integer.MIN_VALUE;
 			}else{
-				set = amount + currentint;
+				set = currentint + amount;
 			}
 			settokens.setInt(1,set);
 			settokens.setString(2, player.getUniqueId().toString());
@@ -141,7 +141,7 @@ public class Economy extends JavaPlugin{
 			}else if(temp.longValue()<min.longValue()){
 				set = Integer.MIN_VALUE;
 			}else{
-				set = amount - currentint;
+				set = currentint - amount;
 			}
 			setcoins.setInt(1, set);
 			setcoins.setString(2, player.getUniqueId().toString());
@@ -163,7 +163,7 @@ public class Economy extends JavaPlugin{
 			}else if(temp.longValue()<min.longValue()){
 				set = Integer.MIN_VALUE;
 			}else{
-				set = amount - currentint;
+				set = currentint - amount;
 			}
 			settokens.setInt(1,set);
 			settokens.setString(2, player.getUniqueId().toString());
