@@ -3,12 +3,10 @@ package net.lightcraft.economy;
 import java.sql.Connection;
 import org.bukkit.plugin.Plugin;
 
-public abstract class Database
-{
+public abstract class Database {
 	protected Plugin plugin;
 
-	protected Database(Plugin plugin)
-	{
+	protected Database(Plugin plugin) {
 		this.plugin = plugin;
 	}
 
