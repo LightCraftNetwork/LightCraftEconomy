@@ -163,7 +163,7 @@ public class Economy extends JavaPlugin{
 			}else if(temp.longValue()<min.longValue()){
 				set = Integer.MIN_VALUE;
 			}else{
-				set = amount + currentint;
+				set = amount - currentint;
 			}
 			settokens.setInt(1,set);
 			settokens.setString(2, player.getUniqueId().toString());
