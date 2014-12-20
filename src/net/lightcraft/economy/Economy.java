@@ -68,7 +68,7 @@ public class Economy extends JavaPlugin{
 			tokens.setString(1, player.getUniqueId().toString());
 			ResultSet rs = tokens.executeQuery();
 			if(rs.first()){
-				return rs.getInt("coins");
+				return rs.getInt("tokens");
 			}else{
 				add.setString(1, player.getUniqueId().toString());
 				add.execute();
