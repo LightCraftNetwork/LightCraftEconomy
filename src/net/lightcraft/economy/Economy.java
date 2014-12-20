@@ -1,5 +1,6 @@
 package net.lightcraft.economy;
 
+import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,8 @@ public class Economy extends JavaPlugin{
 	private static Economy main;
 	private Connection connection;
 	private MySQL mysql;
-	private PreparedStatement tokens, coins, add;
+	private PreparedStatement tokens, coins, addtokens, addcoins, setcoins, settokens;
+	private BigInteger max = new BigInteger(String.valueOf(Integer.MAX_VALUE)), min = new BigInteger(String.valueOf(Integer.MIN_VALUE));
 
 	public void onEnable(){
 		main = this;
@@ -31,7 +33,7 @@ public class Economy extends JavaPlugin{
 	private void createSQLTables(){
 		try{
 			getConnection().prepareStatement("CREATE TABLE `coins` (`uuid` VARCHAR(36) NOT NULL,`coins` INT NOT NULL DEFAULT '0');").execute();
-			getConnection().prepareStatement("CREATE TABLE `tokens` (`uuid` VARCHAR(36) NOT NULL,`tokens` INT NOT NULL DEFAULT '0')").execute();
+			getConnection().prepareStatement("CREATE TABLE `tokens` (`uuid` VARCHAR(36) NOT NULL,`tokens` INT NOT NULL DEFAULT '0');").execute();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -41,7 +43,10 @@ public class Economy extends JavaPlugin{
 		try{
 			coins = getConnection().prepareStatement("SELECT * FROM `coins` WHERE uuid = ?;");
 			tokens = getConnection().prepareStatement("SELECT * FROM `tokens` WHERE uuid = ?;");
-			add = getConnection().prepareStatement("INSERT INTO `coins`(`uuid`) VALUES (?)");
+			addcoins = getConnection().prepareStatement("INSERT INTO `coins`(`uuid`) VALUES (?);");
+			addtokens = getConnection().prepareStatement("INSERT INTO `tokens`(`uuid`) VALUES (?);");
+			setcoins = getConnection().prepareStatement("UPDATE `coins` SET `coins` = ? WHERE `playername` = ?;");
+			settokens = getConnection().prepareStatement("UPDATE `coins` SET `tokens` = ? WHERE `playername` = ?;");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -54,8 +59,8 @@ public class Economy extends JavaPlugin{
 			if(rs.first()){
 				return rs.getInt("coins");
 			}else{
-				add.setString(1, player.getUniqueId().toString());
-				add.execute();
+				addcoins.setString(1, player.getUniqueId().toString());
+				addcoins.execute();
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -70,14 +75,102 @@ public class Economy extends JavaPlugin{
 			if(rs.first()){
 				return rs.getInt("tokens");
 			}else{
-				add.setString(1, player.getUniqueId().toString());
-				add.execute();
+				addtokens.setString(1, player.getUniqueId().toString());
+				addtokens.execute();
 				return 0;
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	
+	public void giveCoins(Player player, int amount){
+		try{
+			int currentint = getCoins(player);
+			BigInteger current = new BigInteger(String.valueOf(currentint));
+			BigInteger add = new BigInteger(String.valueOf(amount));
+			int set = amount;
+			BigInteger temp;
+			if((temp = current.add(add)).longValue()>max.longValue()){
+				set = Integer.MAX_VALUE;
+			}else if(temp.longValue()<min.longValue()){
+				set = Integer.MIN_VALUE;
+			}else{
+				set = amount + currentint;
+			}
+			setcoins.setInt(1, set);
+			setcoins.setString(2, player.getUniqueId().toString());
+			setcoins.execute();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void giveTokens(Player player, int amount){
+		try{
+			int currentint = getTokens(player);
+			BigInteger current = new BigInteger(String.valueOf(currentint));
+			BigInteger add = new BigInteger(String.valueOf(amount));
+			int set = amount;
+			BigInteger temp;
+			if((temp = current.add(add)).longValue()>max.longValue()){
+				set = Integer.MAX_VALUE;
+			}else if(temp.longValue()<min.longValue()){
+				set = Integer.MIN_VALUE;
+			}else{
+				set = amount + currentint;
+			}
+			settokens.setInt(1,set);
+			settokens.setString(2, player.getUniqueId().toString());
+			settokens.execute();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void takeCoins(Player player, int amount){
+		try{
+			int currentint = getCoins(player);
+			BigInteger current = new BigInteger(String.valueOf(currentint));
+			BigInteger add = new BigInteger(String.valueOf(amount));
+			int set = amount;
+			BigInteger temp;
+			if((temp = current.add(add)).longValue()>max.longValue()){
+				set = Integer.MAX_VALUE;
+			}else if(temp.longValue()<min.longValue()){
+				set = Integer.MIN_VALUE;
+			}else{
+				set = amount - currentint;
+			}
+			setcoins.setInt(1, set);
+			setcoins.setString(2, player.getUniqueId().toString());
+			setcoins.execute();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void takeTokens(Player player, int amount){
+		try{
+			int currentint = getTokens(player);
+			BigInteger current = new BigInteger(String.valueOf(currentint));
+			BigInteger add = new BigInteger(String.valueOf(amount));
+			int set = amount;
+			BigInteger temp;
+			if((temp = current.add(add)).longValue()>max.longValue()){
+				set = Integer.MAX_VALUE;
+			}else if(temp.longValue()<min.longValue()){
+				set = Integer.MIN_VALUE;
+			}else{
+				set = amount + currentint;
+			}
+			settokens.setInt(1,set);
+			settokens.setString(2, player.getUniqueId().toString());
+			settokens.execute();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 	}
 
 	public static Economy getInstance(){
