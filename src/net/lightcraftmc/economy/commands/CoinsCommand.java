@@ -18,7 +18,7 @@ public class CoinsCommand extends AbstractCommand{
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String Label,
 			String[] args) {
-		if(!s.hasPermission("commands.coins"));
+		if(!s.hasPermission("economy.coins"))return false;
 		if(args.length==0){
 			s.sendMessage(ChatColor.GREEN + "-=-=-=-=-=-=-[Coins]-=-=-=-=-=-=-");
 			s.sendMessage(ChatColor.AQUA + "/coins give <player> <amount>");

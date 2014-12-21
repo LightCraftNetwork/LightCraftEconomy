@@ -18,7 +18,7 @@ public class TokensCommand extends AbstractCommand{
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String Label,
 			String[] args) {
-		if(!s.hasPermission("commands.tokens"));
+		if(!s.hasPermission("economy.tokens"))return false;
 		if(args.length==0){
 			s.sendMessage(ChatColor.GREEN + "-=-=-=-=-=-=-[Tokens]-=-=-=-=-=-=-");
 			s.sendMessage(ChatColor.AQUA + "/tokens give <player> <amount>");
