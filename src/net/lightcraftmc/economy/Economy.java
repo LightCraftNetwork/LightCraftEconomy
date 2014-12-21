@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import net.lightcraftmc.economy.commands.CoinsCommand;
+import net.lightcraftmc.economy.commands.TokensCommand;
 import net.lightcraftmc.fusebox.configuration.Configuration;
 import net.lightcraftmc.fusebox.mysql.MySQL;
 
@@ -23,6 +25,8 @@ public class Economy extends JavaPlugin{
 
 	public void onEnable(){
 		main = this;
+		new CoinsCommand("coins").register();
+		new TokensCommand("tokens").register();
 		setupConnection();
 		createSQLTables();
 		createPreparedStatements();
