@@ -1,5 +1,5 @@
 name: LightCraftEconomy
-main: net.lightcraft.economy.Economy
+main: net.lightcraftmc.economy.Economy
 author: Dablakbandit
 version: 1.0
 depend: [LightCraftFusebox]

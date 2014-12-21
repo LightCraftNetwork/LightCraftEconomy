@@ -1,12 +1,12 @@
-package net.lightcraft.economy;
+package net.lightcraftmc.economy;
 
 import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.lightcraft.fusebox.configuration.Configuration;
-import net.lightcraft.fusebox.mysql.MySQL;
+import net.lightcraftmc.fusebox.configuration.Configuration;
+import net.lightcraftmc.fusebox.mysql.MySQL;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
