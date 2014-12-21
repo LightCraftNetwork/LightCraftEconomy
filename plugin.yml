@@ -1,5 +1,5 @@
 name: LightCraftEconomy
-main: net.lightcraft.economy
+main: net.lightcraft.economy.Economy
 author: Dablakbandit
 version: 1.0
-depend: [HubPlugin]
+depend: [LightCraftFusebox]
