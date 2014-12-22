@@ -185,7 +185,7 @@ public class Economy extends JavaPlugin{
 	}
 
 	private Connection getConnection(){
-		if(connection==null)this.mysql.openConnection();
+		if(connection==null)this.connection = this.mysql.openConnection();
 		if(!isConnected()){
 			try{
 				this.connection.close();
