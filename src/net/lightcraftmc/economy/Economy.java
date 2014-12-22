@@ -40,7 +40,7 @@ public class Economy extends JavaPlugin{
 	private void createSQLTables(){
 		try{
 			getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS `coins` (`uuid` VARCHAR(36) NOT NULL,`coins` INT NOT NULL DEFAULT '0');").execute();
-			getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS`tokens` (`uuid` VARCHAR(36) NOT NULL,`tokens` INT NOT NULL DEFAULT '0');").execute();
+			getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS `tokens` (`uuid` VARCHAR(36) NOT NULL,`tokens` INT NOT NULL DEFAULT '0');").execute();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
