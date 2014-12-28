@@ -7,11 +7,12 @@ import java.sql.SQLException;
 
 import net.lightcraftmc.economy.commands.CoinsCommand;
 import net.lightcraftmc.economy.commands.TokensCommand;
-import net.lightcraftmc.fusebox.configuration.Configuration;
-import net.lightcraftmc.fusebox.mysql.MySQL;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.lightcraftmc.fusebox.configuration.Configuration;
+import com.lightcraftmc.fusebox.mysql.MySQL;
 
 import java.sql.Connection;
 
