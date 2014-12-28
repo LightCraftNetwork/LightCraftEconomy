@@ -1,16 +1,15 @@
-package net.lightcraftmc.economy;
+package com.lightcraftmc.economy;
 
 import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.lightcraftmc.economy.commands.CoinsCommand;
-import net.lightcraftmc.economy.commands.TokensCommand;
-
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.lightcraftmc.economy.commands.CoinsCommand;
+import com.lightcraftmc.economy.commands.TokensCommand;
 import com.lightcraftmc.fusebox.configuration.Configuration;
 import com.lightcraftmc.fusebox.mysql.MySQL;
 
